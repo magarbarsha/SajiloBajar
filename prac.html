@@ -1,0 +1,40 @@
+<script src="https://cdn.tailwindcss.com"></script>
+ <!-- Button to trigger the dropdown -->
+<button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded">
+    Open Dropdown
+  </button>
+  
+  <!-- Dropdown Menu -->
+  <ul id="dropdownMenu" class="absolute hidden shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto">
+    <li class="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer">Dropdown option</li>
+    <li class="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer">Closet</li> 
+    <li class="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer">Sales details</li>
+    <li class="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer">Marketing</li>
+  </ul>
+  
+  <!-- Script to handle dropdown visibility -->
+  <script>
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+  
+    // Toggle dropdown visibility when button is clicked
+    dropdownButton.addEventListener('click', (event) => {
+      dropdownMenu.classList.toggle('hidden');
+      event.stopPropagation(); // Prevent the event from bubbling up to the document
+    });
+  
+    // Close the dropdown if clicked outside of the button or menu
+    document.addEventListener('click', (event) => {
+      if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
+      }
+    });
+  
+    // Optional: Close dropdown on 'Esc' key press
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        dropdownMenu.classList.add('hidden');
+      }
+    });
+  </script>
+  
