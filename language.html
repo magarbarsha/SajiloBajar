@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Dropdown Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-50">
+
+    <!-- Language Dropdown -->
+    <div class="relative inline-block">
+        <button class="bg-red-600 text-white px-4 py-2 rounded-md focus:outline-none">Change Language</button>
+        <div class="dropdown-menu hidden absolute bg-white shadow-lg rounded-md mt-2 w-40 z-10">
+            <div class="language-option flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100" onclick="changeLanguage('en')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English" class="w-5 mr-2">
+                <span>EN / English</span>
+            </div>
+            <div class="language-option flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100" onclick="changeLanguage('ne')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Flag_of_Nepal.svg" alt="Nepali" class="w-5 mr-2">
+                <span>NE / Nepali</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="mt-8 px-4">
+        <h1 id="welcome" class="text-2xl font-semibold">Welcome to Our E-commerce Website!</h1>
+        <p id="description" class="mt-2 text-lg">Please select a language.</p>
+    </div>
+
+    <script>
+        // Toggle dropdown visibility
+        document.querySelector('.bg-red-600').addEventListener('click', function () {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Optional: Close the dropdown if clicked outside
+        window.addEventListener('click', function (event) {
+            const dropdown = document.querySelector('.relative');
+            if (!dropdown.contains(event.target)) {
+                document.querySelector('.dropdown-menu').classList.add('hidden');
+            }
+        });
+
+        // Language data for switching
+        const languages = {
+            en: {
+                welcome: "Welcome to Our E-commerce Website!",
+                description: "Please select a language."
+            },
+            ne: {
+                welcome: "हाम्रो ई-कॉमर्स वेबसाइटमा स्वागत छ!",
+                description: "कृपया भाषा चयन गर्नुहोस्।"
+            }
+        };
+
+        // Function to change the language
+        function changeLanguage(lang) {
+            const content = languages[lang];
+
+            document.getElementById("welcome").textContent = content.welcome;
+            document.getElementById("description").textContent = content.description;
+
+            // Close the dropdown menu after selection
+            document.querySelector('.dropdown-menu').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
